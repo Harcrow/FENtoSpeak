@@ -3,34 +3,54 @@ import chess
 
 engine = pyttsx3.init()
 
-testfen = 'rnbqkb1r/pppppppp/5n2/8/3P4/8/PPP1PPPP/RNBQKBNR w KQkq - 1 2'
+testfen = '1k6/8/1K6/8/4Q3/8/8/8 w - - 0 1'
 board = chess.Board()
+board.set_fen(testfen)
+
+
+speak_rate = 175
+engine.setProperty('rate', speak_rate)
+
+
+white_pieces= []
+white_squares = []
+black_pieces = []
+black_squares = []
 
 for i in chess.SQUARES:
     piece = board.piece_at(i)
-    if piece:
-        
+    square = chess.square_name(i)
+    
+    if piece:    
         TypeofPiece = chess.piece_name(piece.piece_type)
         piece_color = piece.color
         
-        square = chess.square_name(i)
-               
         if piece_color is True:
             piece_color = "White"
-        else: 
-            piece_color = "Black"
+            white_pieces.append(TypeofPiece)
+            white_squares.append(square)
+            engine.say(white_pieces[0])
+            engine.say(white_squares[0])
             
-        print('\n')
-        print(TypeofPiece)  
-        print(square)
-        print(piece_color)
-        
-    #    if symbol = 'R':
-    #       symbol = 'Rook'
-    #    elif symbol = 
+        else:        
+            piece_color = "Black"
+            black_pieces.append(TypeofPiece)
+            black_pieces.append(square)
             
     else:
-            None
-#piece_color = str(piece_color)
-#pyttsx3.speak(TypeofPiece + piece_color)
-#print(symbol)
+        None
+
+i=1  
+#pyttsx3.speak("White's Position")
+#for i in white_pieces:
+#engine.say(white_pieces[i])
+#engine.say(white_squares[i])
+engine.runAndWait()
+engine.stop()
+print(white_pieces[i])
+print(white_squares[i])
+    
+    
+# piece_color = str(piece_color)
+# pyttsx3.speak(TypeofPiece)
+
