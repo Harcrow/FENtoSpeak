@@ -60,7 +60,7 @@ for fen in fenList:
                 tts.save(mp3File)
                 temp = AudioSegment.from_file(mp3File)
                 WhitePositions = WhitePositions + temp + delay_half
-                #os.remove(mp3File)               
+                os.remove(mp3File)               
                             
             else:        
                 tts = gTTS(str(TypeofPiece) + " on " + str(square), lang='en')
@@ -68,7 +68,7 @@ for fen in fenList:
                 tts.save(mp3File)
                 temp = AudioSegment.from_file(mp3File)
                 BlackPositions = BlackPositions + temp + delay_half
-                #os.remove(mp3File)
+                os.remove(mp3File)
         else:
             None
 
